@@ -1,0 +1,70 @@
+//
+// STYLES.sCSS
+//
+
+// General styles
+* {
+   margin: 0;
+   padding: 0;
+   outline: 0;
+   border: none;
+   box-sizing: border-box; }
+
+// Page layout
+main {
+   display: flex;
+   width: 100vw;
+   height: 100vh;
+   flex-direction: column;
+   background-color: #eeeeee; }
+
+// Header styles
+h1 {
+   margin: 50px;
+   font-size: 50px;
+   text-align: center; }
+
+// Scoreboard
+.score {
+   width: 100vw;
+   margin: 20px 0;
+   padding: 0 20px;
+   div {
+      display: flex;
+      padding: 10px 0; }
+   h2 {
+      margin: 0 15px 0 0; }
+   p {
+      margin: 0;
+      line-height: 30px; } }
+
+// Game field
+.game {
+   display: flex;
+   justify-content: center;
+   #pHand {
+      transform: scaleX(-1); } }
+
+// Play with rock, paper or scissors
+.play {
+   display: flex;
+   justify-content: center;
+   button {
+      width: 200px;
+      color: #ffffff;
+      margin: 0 25px;
+      cursor: pointer;
+      font-size: 22px;
+      padding: 10px 30px;
+      border-radius: 10px;
+      background-color: #354052;
+      box-shadow: 3px 3px 5px 0 #00000021;
+      transition: background-color .2s, box-shadow .2s;
+      &:hover {
+         background-color: #3c485b;
+         box-shadow: 3px 3px 5px 0 #00000031; }
+      &:disabled {
+         cursor: not-allowed;
+         background-color: #60667c;
+      }
+   } }
