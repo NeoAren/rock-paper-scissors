@@ -18,6 +18,7 @@ const playButtons = document.querySelectorAll('.buttons button');
 const startSection = document.querySelector('#start-section');
 const gameSection = document.querySelector('#game-section');
 const endSection = document.querySelector('#end-section');
+const jigsaw = document.querySelector('#jigsaw');
 
 // Setting up event listeners
 startButton.addEventListener('click', () => start());
@@ -36,6 +37,7 @@ const start = () => {
    title.textContent = 'Let\'s get started!';
    startSection.style.display = 'none';
    endSection.style.display = 'none';
+   jigsaw.style.display = 'none';
    gameSection.style.display = 'flex';
    pHand.src = 'assets/rock.png';
    cHand.src =  'assets/rock.png';

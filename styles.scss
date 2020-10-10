@@ -42,7 +42,7 @@ main {
    display: grid;
    width: 100vw;
    height: 100vh;
-   background-color: #eeeeee; }
+   background-image: url('assets/background.png'); }
 
 // Start, end and game sections
 #start-section, #game-section, #end-section {
@@ -80,3 +80,20 @@ main {
 .buttons {
    display: flex;
    justify-content: center; }
+
+// Jigsaw animation
+#jigsaw {
+   bottom: 0;
+   left: 0;
+   right: 0;
+   overflow: hidden;
+   position: absolute;
+   margin: 50px 0;
+   border-bottom: 1px solid #aaaaaa;
+   img {
+      width: 200px;
+      position: relative;
+      animation: 10s trike infinite linear; }
+   @keyframes trike {
+      0% { left: 100vw; }
+      100% { left: -200px; } } }
