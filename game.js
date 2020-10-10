@@ -36,7 +36,7 @@ const start = () => {
    title.textContent = 'Let\'s get started!';
    startSection.style.display = 'none';
    endSection.style.display = 'none';
-   gameSection.style.display = 'block';
+   gameSection.style.display = 'flex';
    pHand.src = 'assets/rock.png';
    cHand.src =  'assets/rock.png';
 };
@@ -87,10 +87,10 @@ const play = pChoice => {
 // End the game
 const end = () => {
    gameSection.style.display = 'none';
-   endSection.style.display = 'block';
+   endSection.style.display = 'flex';
    const winnerScore = scores[history.winner === 'player' ? 'p' : 'c'];
    const loserScore = scores[history.winner === 'player' ? 'c' : 'p'];
-   result.textContent = `${history.winner} won by ${winnerScore} to ${loserScore}!`;
+   result.textContent = `${history.winner} won ${winnerScore} to ${loserScore}!`;
 };
 
 // Compare x and y choices, 1 = x wins, -1 = x loses, 0 = tie

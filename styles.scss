@@ -12,7 +12,7 @@
 
 // Main header style
 h1 {
-   margin: 50px;
+   margin-bottom: 50px;
    font-size: 50px;
    text-align: center;
    &:first-letter {
@@ -39,24 +39,26 @@ button {
 
 // Page layout
 main {
-   display: flex;
+   display: grid;
    width: 100vw;
    height: 100vh;
-   flex-direction: column;
    background-color: #eeeeee; }
 
-// Welcome and end screens
-.welcome, .end {
-   width: 100vw;
-   height: 100vh;
-   text-align: center;
-   padding: calc(50vh - 200px) calc(50vw - 300px); }
+// Start, end and game sections
+#start-section, #game-section, #end-section {
+   display: flex;
+   width: max(50vw, 400px);
+   padding: 50px 50px;
+   align-self: center;
+   align-items: center;
+   justify-self: center;
+   flex-direction: column; }
 
 // Scoreboard
 .score {
    display: flex;
-   width: 100vw;
-   padding: 50px 100px;
+   width: 100%;
+   padding-bottom: 20px;
    h2 {
       margin: 0 15px 0 0;
       &:last-child {
