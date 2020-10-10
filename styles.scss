@@ -10,6 +10,33 @@
    border: none;
    box-sizing: border-box; }
 
+// Main header style
+h1 {
+   margin: 50px;
+   font-size: 50px;
+   text-align: center;
+   &:first-letter {
+      text-transform: capitalize; } }
+
+// Button design
+button {
+   width: 200px;
+   color: #ffffff;
+   margin: 0 25px;
+   cursor: pointer;
+   font-size: 22px;
+   padding: 10px 30px;
+   border-radius: 10px;
+   background-color: #354052;
+   box-shadow: 3px 3px 5px 0 #00000021;
+   transition: background-color .2s, box-shadow .2s;
+   &:hover {
+      background-color: #3c485b;
+      box-shadow: 3px 3px 5px 0 #00000031; }
+   &:disabled {
+      cursor: not-allowed;
+      background-color: #60667c; } }
+
 // Page layout
 main {
    display: flex;
@@ -18,25 +45,27 @@ main {
    flex-direction: column;
    background-color: #eeeeee; }
 
-// Header styles
-h1 {
-   margin: 50px;
-   font-size: 50px;
-   text-align: center; }
+// Welcome and end screens
+.welcome, .end {
+   width: 100vw;
+   height: 100vh;
+   text-align: center;
+   padding: calc(50vh - 200px) calc(50vw - 300px); }
 
 // Scoreboard
 .score {
+   display: flex;
    width: 100vw;
-   margin: 20px 0;
-   padding: 0 20px;
-   div {
-      display: flex;
-      padding: 10px 0; }
+   padding: 50px 100px;
    h2 {
-      margin: 0 15px 0 0; }
-   p {
+      margin: 0 15px 0 0;
+      &:last-child {
+         flex-grow: 1;
+         text-align: right; } }
+   i {
       margin: 0;
-      line-height: 30px; } }
+      line-height: 30px;
+      font-style: normal; } }
 
 // Game field
 .game {
@@ -45,26 +74,7 @@ h1 {
    #pHand {
       transform: scaleX(-1); } }
 
-// Play with rock, paper or scissors
-.play {
+// Choose rock, paper or scissors
+.buttons {
    display: flex;
-   justify-content: center;
-   button {
-      width: 200px;
-      color: #ffffff;
-      margin: 0 25px;
-      cursor: pointer;
-      font-size: 22px;
-      padding: 10px 30px;
-      border-radius: 10px;
-      background-color: #354052;
-      box-shadow: 3px 3px 5px 0 #00000021;
-      transition: background-color .2s, box-shadow .2s;
-      &:hover {
-         background-color: #3c485b;
-         box-shadow: 3px 3px 5px 0 #00000031; }
-      &:disabled {
-         cursor: not-allowed;
-         background-color: #60667c;
-      }
-   } }
+   justify-content: center; }

@@ -1,64 +1,96 @@
 //
-// Rock, paper and scissors game by Andras Adam
+// Rock, paper and scissors game by András Ádám
 //
 
-// Create scores and history variables
-// const history = [];
-const scores = { p: 0, c: 0 };
+// Declare scores and history variables
+let scores, history;
 
 // DOM element variables
+const title = document.querySelector('#title');
+const result = document.querySelector('#result');
 const pHand = document.querySelector('#pHand');
 const cHand = document.querySelector('#cHand');
 const pScoreDOM = document.querySelector('#pScore');
 const cScoreDOM = document.querySelector('#cScore');
-const buttons = document.querySelectorAll('.play button');
+const startButton = document.querySelector('#start');
+const restartButton = document.querySelector('#restart');
+const playButtons = document.querySelectorAll('.buttons button');
+const startSection = document.querySelector('#start-section');
+const gameSection = document.querySelector('#game-section');
+const endSection = document.querySelector('#end-section');
 
-// Bind event listeners to all options
-buttons.forEach((button) => {
+// Setting up event listeners
+startButton.addEventListener('click', () => start());
+restartButton.addEventListener('click', () => start());
+playButtons.forEach((button) => {
     button.addEventListener('click', () => play(button.id));
 });
+
+// Setup/reset the play area, scores and history
+const start = () => {
+    scores = { p: 0, c: 0 };
+    history = { winner: null, count: 1 };
+    pScoreDOM.textContent = '0';
+    cScoreDOM.textContent = '0';
+    result.textContent = '';
+    title.textContent = 'Let\'s get started!';
+    startSection.style.display = 'none';
+    endSection.style.display = 'none';
+    gameSection.style.display = 'block';
+    pHand.src = 'assets/rock.png';
+    cHand.src =  'assets/rock.png';
+};
 
 // Play the game
 const play = pChoice => {
 
-    // Reset hands and disable buttons
-    buttons.forEach(button => button.disable());
+    // Set hand images to rock and disable buttons
     pHand.src = 'assets/rock.png';
     cHand.src =  'assets/rock.png';
+    playButtons.forEach(button => button.disabled = true);
 
-    // Get random computer choice
+    // Calculate random computer choice
     const random = Math.floor(Math.random() * 3);
     const cChoice = ['rock', 'paper', 'scissors'][random];
 
-    pHand.animate([
-        { transform: 'scaleX(-1) rotate(0deg)' },
-        { transform: 'scaleX(-1) rotate(40deg)' },
-        { transform: 'scaleX(-1) rotate(0deg)' }
-    ], { duration: 500, iterations: 3 });
-
-    cHand.animate([
-        { transform: 'rotate(0deg)' },
-        { transform: 'rotate(40deg)' },
-        { transform: 'rotate(0deg)' }
-    ], { duration: 500, iterations: 3 });
-
+    // Hand animations
+    animatePlayerHand();
+    animateComputerHand();
 
     // Update scores and display results
     setTimeout(() => {
 
-        // Update hands and enable buttons
+        // Update hands and enable buttons again
         pHand.src = 'assets/' + pChoice + '.png';
         cHand.src =  'assets/' + cChoice + '.png';
-        buttons.forEach(button => button.disabled = false);
+        playButtons.forEach(button => button.disabled = false);
 
-        // Calculate result and update scores
+        // Compare hands and find winner
         const result = compare(pChoice, cChoice);
-        if (result !== 0) scores[result === 1 ? 'p' : 'c']++;
+        const winner = result ? result === 1 ? 'player' : 'computer' : null;
+
+        // Update scores and history
+        if (winner) scores[winner === 'player' ? 'p' : 'c']++;
+        history.count = winner && history.winner === winner ? history.count + 1 : 1;
+        history.winner = winner;
+
+        // Display results
         pScoreDOM.textContent = String(scores.p);
         cScoreDOM.textContent = String(scores.c);
-        console.log(`P: ${pChoice} (${scores.p}), C: ${cChoice} (${scores.c})`);
-    }, 1250);
+        title.textContent = winner ? winner + ' wins!' : 'It\'s a tie!';
 
+        // Check for end of game
+        if (history.count === 3 || scores.c === 10 || scores.p === 10) end();
+    }, 1250);
+};
+
+// End the game
+const end = () => {
+    gameSection.style.display = 'none';
+    endSection.style.display = 'block';
+    const winnerScore = scores[history.winner === 'player' ? 'p' : 'c'];
+    const loserScore = scores[history.winner === 'player' ? 'c' : 'p'];
+    result.textContent = `${history.winner} won by ${winnerScore} to ${loserScore}!`;
 };
 
 // Compare x and y choices, 1 = x wins, -1 = x loses, 0 = tie
@@ -67,4 +99,22 @@ const compare = (x, y) => {
         x === 'rock' && y === 'scissors', x === 'paper' && y === 'rock', x === 'scissors' && y === 'paper'
     ];
     return (winConditions[0] || winConditions[1] || winConditions[2]) ? 1 : x === y ? 0 : -1;
+};
+
+// Shake animation on player hand
+const animatePlayerHand = () => {
+    pHand.animate([
+        { transform: 'scaleX(-1) rotate(0deg)' },
+        { transform: 'scaleX(-1) rotate(40deg)' },
+        { transform: 'scaleX(-1) rotate(0deg)' }
+    ], { duration: 500, iterations: 3 });
+};
+
+// Shake animation on computer hand
+const animateComputerHand = () => {
+    cHand.animate([
+        { transform: 'rotate(0deg)' },
+        { transform: 'rotate(40deg)' },
+        { transform: 'rotate(0deg)' }
+    ], { duration: 500, iterations: 3 });
 };

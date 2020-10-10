@@ -9,26 +9,32 @@
 </head>
 <body>
     <main>
-        <section class="score">
-            <div>
-                <h2>Player</h2>
-                <p id="pScore">0</p>
-            </div>
-            <div>
-                <h2>Computer</h2>
-                <p id="cScore">0</p>
+        <section id="start-section">
+            <div class="welcome">
+                <h1>Hello. Do you wanna play a game?</h1>
+                <button id="start">Yes</button>
             </div>
         </section>
-        <section id="game">
-            <h1>Rock, paper & scissors</h1>
+        <section id="game-section" style="display: none;">
+            <div class="score">
+                <h2>Player <i id="pScore"></i></h2>
+                <h2>Computer <i id="cScore"></i></h2>
+            </div>
+            <h1 id="title"></h1>
             <div class="game">
                 <img id="pHand" src="assets/rock.png" alt="Player hand" />
                 <img id="cHand" src="assets/rock.png" alt="Computer hand" />
             </div>
-            <div class="play">
+            <div class="buttons">
                 <button id="rock">Rock</button>
                 <button id="paper">Paper</button>
                 <button id="scissors">Scissors</button>
+            </div>
+        </section>
+        <section id="end-section" style="display: none;">
+            <div class="end">
+                <h1 id="result"></h1>
+                <button id="restart">Restart</button>
             </div>
         </section>
     </main>

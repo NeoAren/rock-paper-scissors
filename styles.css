@@ -6,50 +6,16 @@
   box-sizing: border-box;
 }
 
-main {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  flex-direction: column;
-  background-color: #eeeeee;
-}
-
 h1 {
   margin: 50px;
   font-size: 50px;
   text-align: center;
 }
-
-.score {
-  width: 100vw;
-  margin: 20px 0;
-  padding: 0 20px;
-}
-.score div {
-  display: flex;
-  padding: 10px 0;
-}
-.score h2 {
-  margin: 0 15px 0 0;
-}
-.score p {
-  margin: 0;
-  line-height: 30px;
+h1:first-letter {
+  text-transform: capitalize;
 }
 
-.game {
-  display: flex;
-  justify-content: center;
-}
-.game #pHand {
-  transform: scaleX(-1);
-}
-
-.play {
-  display: flex;
-  justify-content: center;
-}
-.play button {
+button {
   width: 200px;
   color: #ffffff;
   margin: 0 25px;
@@ -61,13 +27,59 @@ h1 {
   box-shadow: 3px 3px 5px 0 #00000021;
   transition: background-color 0.2s, box-shadow 0.2s;
 }
-.play button:hover {
+button:hover {
   background-color: #3c485b;
   box-shadow: 3px 3px 5px 0 #00000031;
 }
-.play button:disabled {
+button:disabled {
   cursor: not-allowed;
   background-color: #60667c;
+}
+
+main {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  background-color: #eeeeee;
+}
+
+.welcome, .end {
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  padding: calc(50vh - 200px) calc(50vw - 300px);
+}
+
+.score {
+  display: flex;
+  width: 100vw;
+  padding: 50px 100px;
+}
+.score h2 {
+  margin: 0 15px 0 0;
+}
+.score h2:last-child {
+  flex-grow: 1;
+  text-align: right;
+}
+.score i {
+  margin: 0;
+  line-height: 30px;
+  font-style: normal;
+}
+
+.game {
+  display: flex;
+  justify-content: center;
+}
+.game #pHand {
+  transform: scaleX(-1);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=styles.css.map */
